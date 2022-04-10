@@ -1,0 +1,13 @@
+--delete documents
+db.myCol1.deleteOne(filter, options)
+db.myCol1.deleteMany(filter, options)
+db.myCol1.findOneAndDelete(filter, options)
+
+Delete all documents
+db.myCol1.deleteMany({})
+
+db.myCol1.deleteOne({
+	status: "xyz",
+	val:5
+})
+

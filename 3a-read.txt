@@ -1,0 +1,39 @@
+Read/Query documents
+-Retrieve documents from a collection:
+db.collection.find(query, projection)
+db.collection.findOne(query, projection)
+
+Retrieve all documents- db.myCol1.find({}) or db.myCol1.find()
+
+> db.myCol1.find(
+	{age: {$gt:18}},		---> Query criteria
+	{name:1, address:1}		---> Projection of fields
+)
+
+Chaining:
+> db.myCol1.find(query)
+	.sort({score: -1})
+	.skip(2)
+	.limit(5)
+
+
+Equality
+AND
+> db.myCol1.find(
+	{
+		str:"xyz",
+		val:5
+	}
+)
+
+OR
+> db.myCol1.find(
+	{ 
+		$or: [{str:"xyz"},{val:5}]
+	}
+)
+
+IN
+> db.myCol1.find({ str: {$in: ["xyz","pqr"]} })
+
+

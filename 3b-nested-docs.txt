@@ -1,0 +1,18 @@
+Embedded/Nested documents:
+{
+	x: {a:5,b:4}
+}
+
+
+Equality matches on embedded document require an exact match of specified <value> document
+(<value>={...}), including the field order.
+db.myCol1.find({
+	t: {x:10, s: "ab"},
+	p: 100
+})
+
+
+Query on nested field:
+db.myCol1.find({
+	"t.x": 20
+})

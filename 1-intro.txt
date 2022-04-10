@@ -1,0 +1,16 @@
+Database = Set of collections
+Collection = Set of documents
+
+Collection <-> Table
+Document <-> Row/Record of table
+
+
+Open cmd and type mongo
+> show dbs
+> use db1
+> db: show name of db currently being used
+> db.stats(): show stats of db
+> show collections: show all collections in a db
+> db.myCol1.find(): show all documents in myCol1 collection
+> db.myCol1.find().pretty()
+> db.myCol1.count(): count no. of documents in myCol1 collection

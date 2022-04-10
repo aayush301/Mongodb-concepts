@@ -1,0 +1,93 @@
+--- Project fields------
+If we don't specify projection, MongoDB returns all fiels in the matching documents.
+
+
+Project: _id(by default),val,status
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		val:1, status:1
+	}
+)
+
+Suppress _id field
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		val:1, status:1, _id:0
+	}
+)
+
+Project all fields except name
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		name:0
+	}
+)
+
+Case of Embedded document-
+Project: _id, status, ob.x
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		status:1, "ob.x":1
+	}
+)
+or
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		status:1, ob: {x:1}
+	}
+)
+
+Project all fields except ob.y
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		"ob.x": 0		//or ob: {x:0}
+	}
+)
+
+Case of array of embedded documents-
+Project z field of documents embedded in orr array
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		"orr.z": 1
+	}
+)
+
+
+Projection of specific array elements-
+$elemMatch, $slice, $
+
+$slice:+ve will give first n elements
+$slice:-ve will give last n elements
+
+Project last element in arr
+db.myCol1.find(
+	{
+		status:"xyz"
+	},
+	{
+		status:1, arr: {$slice:-1}
+	}
+)
+
+

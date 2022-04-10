@@ -1,0 +1,43 @@
+Query an array of nested/embedded documents
+
+Example of a document:
+{
+	orr: [
+		{x:10},
+		{x:20}
+	]
+}
+
+Match all documents where orr contains atleast one document {x:10}
+db.myCol1.find({
+	orr: {x:10}
+})
+
+Match all documents where orr contains atleast one document that contains field x whose value<20
+db.myCol1.find({
+	"orr.x": {$lt:20}
+})
+
+Match all documents where orr has as its first element a document that contains field x>10
+db.myCol1.find({
+	"orr.0.x": {$gt:10}
+})
+
+Match all documents where orr has at least one document that contains x=10 and y=15
+db.myCol1.find({
+	orr: {$elemMatch: {x:10,y:15}}
+})
+
+Match all documents where orr has atleast one document that contains 10<x<20
+db.myCol1.find({
+	orr: {$elemMatch: {x: {$gt:10,$lt:20}}}
+})
+
+Match all documents where orr array has atleast one document that has x>10 and also orr has atleast 
+one document(not necessarily the same document) that has x<20
+(This means combination of documents in orr array must satisfy 10<x<20)
+db.myCol1.find({
+	"orr.x": {$gt:10,$lt:20}
+})
+
+

@@ -1,0 +1,30 @@
+db.myCol1.find() method returns a cursor.
+
+
+var myCursor = db.myCol1.find({...})
+
+1.
+myCursor
+
+2.
+while(myCursor.hasNext())
+{
+	print(tojson(myCursor.next()))
+}
+
+3.
+while(myCursor.hasNext())
+{
+	printjson(myCursor.next())
+}
+
+4.
+myCursor.forEach(printjson);
+
+5.
+docarr = myCursor.toArray();
+var doc = docarr[3];
+
+6.
+var doc = myCursor[3];			// Equivalent to 5.
+

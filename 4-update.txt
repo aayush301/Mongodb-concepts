@@ -1,0 +1,16 @@
+----- Update documents----
+db.myCol1.updateOne(<filter>, <update>, <options>)
+db.myCol1.updateMany(<filter>, <update>, <options>)
+db.myCol1.replaceOne(<filter>, <replacement>, <options>)
+db.myCol1.findOneAndUpdate(<filter>, <update>, <options>)
+db.myCol1.findOneAndReplace(<filter>, <replacement>, <options>)
+
+db.collection.updateOne(
+	{
+		item: "xyz"
+	},
+	{
+		$set: {x:1,y:2},
+		$currentDate: {lastModified:true}
+	}
+)

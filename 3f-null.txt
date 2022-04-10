@@ -1,0 +1,16 @@
+db.myCol1.insert([
+	{x:null, y:5},
+	{y:10}
+])
+
+Equality filter:
+Match all documents that either contain x field whose value is null or that don't contain x field
+db.myCol1.find({x:null})
+
+Type check:
+Match only those documents that contain x field whose value is null
+db.myCol1.find({x: {$type:10}})
+
+Existence Check:
+Match all documents that don't contain x field
+db.myCol1.find({x: {$exists: false}})

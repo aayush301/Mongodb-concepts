@@ -1,0 +1,136 @@
+1. Comparison Query Operators:
+$eq- matches values that are equal to a specified value.
+$gt- matches values that are greater than a specified value.
+$gte- matches values that are greater than or equal to a specified value.
+$lt- matches values that are less than a specified value.
+$lte- matches values that are less than or equal to a specified value.
+$ne- matches all values that are not equal to a specified value. (or field doesn't exist)
+$in- matches any of the values specified as an array.
+$nin- matches none of the values specified as an array.
+
+2. Logical Query Operators:
+$and
+$or
+$not- It selects the documents that don't match <operator-expression> or that don't contain the field.
+$nor
+
+3. Element Query Operators:
+$exists
+$type
+
+4. Evaluation Query Operators:
+$expr
+$jsonSchema
+$mod
+$regex
+$text
+$where
+
+5. Array Query Operators:
+$all
+$elemMatch- It matches documents that contain array <field> with atleast one element that matches all the specified query criteria.
+$size
+
+6. Bitwise Query Operators:
+$bitsAllClear
+$bitsAllSet
+$bitsAnyClear
+$bitsAnySet
+
+7. Projection Operators:
+$
+$elemMatch
+$meta
+$slice
+
+8. Miscellaneous Operators:
+$rand
+$comment
+
+
+9. Field Update Operators:
+$set
+$setOnInsert
+$unset
+$inc
+$min
+$max
+$mul
+$rename
+$currentDate
+
+10. Array update Operators:
+$
+$[]
+$[<identifier>]
+$addToSet
+$push
+$pop
+$pull
+$pullAll
+
+11. Bitwise update Operators:
+$bit
+
+
+
+
+
+
+1. $eq
+Match all documents where x=20
+db.myCol1.find(
+	{ 
+		x: { $eq:20 }			// equivalent to x:20
+	}
+)
+
+Match all documents where arr array contains 5 or arr field = 5
+db.myCol1.find(
+	{
+		arr: { $eq: 5 }			// equivalent to arr:5
+	}
+)
+
+
+
+2. $ne
+{field: {$ne: value}}
+It matches all documents where the value of field is not equal to specified value or field does not exist.
+
+
+
+3. $in
+Match all documents where x is either 5 or 15 or 25
+db.myCol1.find(
+	{
+		x: {$in: [5,15,25]}
+	}
+)
+
+Match all documents where arr contains atleast one element matching either 5 or 15 or 25
+db.myCol1.find(
+	{
+		arr: {$in: [5,15,25]}
+	}
+)
+
+
+
+4. $not
+{field: {$not: {<operator-expression>}}}
+It selects the documents that don't match <operator-expression> or that don't contain the field.
+
+Match all documents where x<=5 or x doesn't exist.
+db.myCol1.find(
+	{
+		x: { $not: {$gt:5}}
+	}
+)
+
+
+
+5. $elemMatch (Array Query operator)
+Syntax: {<field>: {$elemMatch: { <query1>, <query2>, ...> }}}
+It matches documents that contain array <field> with atleast one element that matches all the specified query criteria.
+

@@ -1,0 +1,21 @@
+If the collection does not currently exist, insert operation will create the collection.
+If the document doesn't specify _id field, MongoDB adds _id field with ObjectId value.
+
+Explicit creation of Collection:
+> db.createCollection("col1")
+
+
+insertOne()- Inserts a single document
+		// It returns a document that includes newly inserted document's _id field value.
+insertMany()- Inserts multiple documents
+		// It returns a document that includes newly inserted documents' _id field values.
+insert()- Inserts single or multiple documents
+
+> db.myCol1.insertOne(
+	{
+		x:1,
+		y:"pqr"
+	}
+)
+
+db.myCol1.insertMany([{...}, {...}])

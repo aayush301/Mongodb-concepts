@@ -1,0 +1,35 @@
+----------Query an array----------
+Match all documents where arr = [1,2,3]
+db.myCol1.find({
+	arr: [1,2,3]
+})
+
+Match all documents where arr consists of 1,2,3 (order doesn't matter)
+db.myCol1.find({
+	arr: {$all: [1,2,3]}
+})
+
+Match all documents where arr contains 2 as one of its elements
+db.myCol1.find({
+	arr: 2
+})
+
+Satifies: Case1:atleast One element>15 and atleast other<20, Case2: 15<atleast one element<20
+db.myCol1.find({
+	arr: { $gt: 15, $lt:20 }
+})
+
+22<atleast one element<30
+db.myCol1.find({
+	arr: { $elemMatch: {$gt:22, $lt:30}}
+})
+
+arr[1]>25
+db.myCol1.find({
+	"arr.1": {$gt:25}
+})
+
+arr.size==3
+db.myCol1.find({
+	"arr": {$size: 3}
+})

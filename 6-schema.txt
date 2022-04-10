@@ -1,0 +1,15 @@
+db.createCollection("myCol1", {
+	validator: {
+		$jsonSchema: {
+			required: ["_id", "name", "age"],
+			properties: {
+				_id: { bsonType: "objectId" },
+				name: { bsonType: "string" },
+				age: { bsonType: "double" }
+			},
+			additionalProperties: false
+		}
+	}
+})
+
+
